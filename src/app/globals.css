@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   Design tokens — Retro Desktop-OS / Windows-XP theme
+   ============================================================ */
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-vt323), ui-monospace, monospace;
+
+  /* XP-inspired palette */
+  --color-sky: #5aa7ff;
+  --color-sky-light: #b8dcff;
+  --color-hill: #7bb661;
+  --color-accent: #2563eb;
+  --color-accent-deep: #1e3a8a;
+  --color-panel: #ffffff;
+  --color-panel-bar: #e8eef7;
+  --color-ink: #1f2937;
+  --color-muted: #6b7280;
+  --color-line: #d6e0f0;
+
+  /* Traffic-light dots */
+  --color-dot-red: #ff5f56;
+  --color-dot-yellow: #ffbd2e;
+  --color-dot-green: #27c93f;
+
+  /* Shape */
+  --radius-window: 12px;
+  --shadow-window: 0 8px 24px rgba(30, 58, 138, 0.12);
+  --shadow-window-hover: 0 14px 36px rgba(30, 58, 138, 0.2);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Smooth in-page scrolling for anchor nav */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
+/* XP sky → hill background */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-sky) 0%,
+      var(--color-sky-light) 45%,
+      #e9f4e4 75%,
+      var(--color-hill) 100%
+    );
+  background-attachment: fixed;
+  color: var(--color-ink);
+}
+
+/* Visible focus ring for keyboard navigation (accessibility) */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Sections clear the sticky taskbar when anchor-scrolled */
+section[id] {
+  scroll-margin-top: 72px;
 }
