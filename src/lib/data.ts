@@ -254,7 +254,7 @@ export const education: EduItem[] = [
     detail: "BSc Computer Science.",
   },
   {
-    year: "2025",
+    year: "2026",
     institution: "Yuan Ze University, Taiwan",
     detail: "Exchange semester for international exposure.",
     current: true,
