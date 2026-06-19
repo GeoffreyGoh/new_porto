@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img"
+     aria-label="Abstract deepfake-detection illustration: a wireframe face mesh with a detection bounding box and Grad-CAM heat points">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1b4b"/>
+      <stop offset="0.55" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#102a6b"/>
+    </linearGradient>
+    <radialGradient id="heat" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff5f56" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#ffbd2e" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffbd2e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="640" height="360" fill="url(#bg)"/>
+
+  <!-- faint scan grid -->
+  <g stroke="#5aa7ff" stroke-width="0.5" opacity="0.12">
+    <path d="M0 60H640M0 120H640M0 180H640M0 240H640M0 300H640"/>
+    <path d="M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360M480 0V360M560 0V360"/>
+  </g>
+
+  <!-- Grad-CAM heat zones (eyes, nose, mouth) -->
+  <g>
+    <ellipse cx="285" cy="158" rx="34" ry="26" fill="url(#heat)"/>
+    <ellipse cx="358" cy="158" rx="34" ry="26" fill="url(#heat)"/>
+    <ellipse cx="322" cy="198" rx="26" ry="24" fill="url(#heat)"/>
+    <ellipse cx="322" cy="238" rx="40" ry="22" fill="url(#heat)"/>
+  </g>
+
+  <!-- wireframe face mesh -->
+  <g stroke="#7fb2ff" stroke-width="1" fill="none" opacity="0.9" filter="url(#glow)">
+    <!-- outer contour -->
+    <path d="M322 92
+             C268 92 244 124 246 168
+             C247 206 256 244 286 272
+             C302 287 342 287 358 272
+             C388 244 397 206 398 168
+             C400 124 376 92 322 92 Z"/>
+    <!-- vertical + horizontal mesh guides -->
+    <path d="M322 92V286"/>
+    <path d="M246 168C290 150 354 150 398 168"/>
+    <path d="M252 210C295 196 349 196 392 210"/>
+    <path d="M262 248C295 238 349 238 382 248"/>
+    <!-- triangulation -->
+    <path d="M246 168L285 138L322 158L358 138L398 168"/>
+    <path d="M285 138L322 92L358 138"/>
+    <path d="M252 210L285 158L322 198L358 158L392 210"/>
+    <path d="M262 248L322 198L382 248"/>
+    <path d="M286 272L322 238L358 272"/>
+    <path d="M252 210L286 272M392 210L358 272"/>
+  </g>
+
+  <!-- mesh nodes -->
+  <g fill="#bcd8ff">
+    <circle cx="322" cy="92" r="2.4"/><circle cx="285" cy="138" r="2.4"/><circle cx="358" cy="138" r="2.4"/>
+    <circle cx="246" cy="168" r="2.4"/><circle cx="398" cy="168" r="2.4"/>
+    <circle cx="285" cy="158" r="2.8" fill="#ff9a93"/><circle cx="358" cy="158" r="2.8" fill="#ff9a93"/>
+    <circle cx="322" cy="198" r="2.8" fill="#ff9a93"/>
+    <circle cx="252" cy="210" r="2.4"/><circle cx="392" cy="210" r="2.4"/>
+    <circle cx="262" cy="248" r="2.4"/><circle cx="382" cy="248" r="2.4"/>
+    <circle cx="322" cy="238" r="2.8" fill="#ff9a93"/>
+    <circle cx="286" cy="272" r="2.4"/><circle cx="358" cy="272" r="2.4"/>
+  </g>
+
+  <!-- detection bounding box -->
+  <g stroke="#27c93f" stroke-width="2" fill="none">
+    <rect x="232" y="78" width="180" height="224" rx="4" stroke-dasharray="6 7" opacity="0.85"/>
+    <!-- corner brackets -->
+    <path d="M232 100V78H254M390 78H412V100M412 280V302H390M254 302H232V280"/>
+  </g>
+
+  <!-- label tag -->
+  <g font-family="ui-monospace, 'Courier New', monospace">
+    <rect x="232" y="56" width="150" height="20" rx="3" fill="#27c93f"/>
+    <text x="240" y="70" font-size="12" font-weight="700" fill="#0d1b4b">FAKE · AUC 0.94</text>
+    <text x="20" y="36" font-size="13" fill="#7fb2ff" opacity="0.85">grad-cam // ensemble</text>
+    <text x="20" y="340" font-size="12" fill="#5aa7ff" opacity="0.7">EfficientNet-B4 + Xception</text>
+  </g>
+</svg>

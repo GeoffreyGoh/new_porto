@@ -85,6 +85,9 @@ export type CertPath = {
   level?: string;
   description: string;
   badges: string[];
+  /** Optional certificate image */
+  image?: string;
+  imageAlt?: string;
 };
 
 export const certifications = {
@@ -98,6 +101,9 @@ export const certifications = {
       title: "Generative AI Leader",
       description:
         "Google Cloud's Gen AI Leader certification path. Covers gen AI strategy, foundation models, prompt engineering, RAG, gen AI agents, and Google Cloud's AI tooling.",
+      image: "/storage/img/certificate-genai-leader.png",
+      imageAlt:
+        "Google Cloud Career Launchpad — Generative AI Leader track certificate awarded to Geoffrey Gohtama",
       badges: [
         "Gen AI: Beyond the Chatbot",
         "Unlock Foundational Concepts",
@@ -155,6 +161,21 @@ export const projects: Project[] = [
     },
     image: "/storage/projects/research-methodology.png",
     imageAlt: "Research methodology diagram from the HIV/AIDS prediction study",
+  },
+  {
+    title: "Deepfake Detection: Dual-CNN Ensemble Framework",
+    role: "Co-author (4-author team, incl. Yuan Ze University)",
+    description:
+      "An IEEE-format study proposing a multimodel deepfake detector that fuses two complementary CNN backbones — an SBI-trained EfficientNet-B4 (for cross-dataset generalization) and a DeepfakeBench-trained Xception (for in-distribution precision) — via four score-level fusion strategies. Mean fusion gave the best cross-dataset robustness (Celeb-DF v2 AUC 0.9427) while logistic stacking maximized within-dataset accuracy (FF++ AUC 0.9960). Added Grad-CAM and SHAP for forensic interpretability, with bootstrap confidence intervals and paired significance tests for statistical rigor.",
+    tags: ["Python", "PyTorch", "EfficientNet", "Xception", "Grad-CAM"],
+    metric: "0.9427 cross-dataset AUC (Celeb-DF v2)",
+    link: {
+      href: "/storage/papers/deepfake-detection-cnn-ensemble.pdf",
+      label: "Read paper",
+    },
+    image: "/storage/img/deepfake.svg",
+    imageAlt:
+      "Abstract deepfake-detection illustration: a wireframe face mesh with a detection bounding box and Grad-CAM heat points",
   },
   {
     title: "Fake News Detection: Classical ML vs. Transformer",

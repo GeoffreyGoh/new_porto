@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FiExternalLink } from "react-icons/fi";
 import { SiGooglecloud } from "react-icons/si";
 import Window from "@/components/Window";
@@ -50,6 +51,24 @@ export default function Certifications() {
               <p className="mt-3 text-sm leading-relaxed text-ink">
                 {path.description}
               </p>
+
+              {path.image && (
+                <a
+                  href={path.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 block overflow-hidden rounded-md border border-line bg-white shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <Image
+                    src={path.image}
+                    alt={path.imageAlt ?? `${path.title} certificate`}
+                    width={2053}
+                    height={1597}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="h-auto w-full"
+                  />
+                </a>
+              )}
 
               <ul className="mt-4 flex flex-wrap gap-2">
                 {path.badges.map((badge) => (
